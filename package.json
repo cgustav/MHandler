@@ -1,0 +1,26 @@
+{
+  "name": "miller-handler",
+  "version": "0.1.1",
+  "description": "REST API Error Messages Generator - Módulo para generación de mensajes de error .",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cgustav/MHandler.git"
+  },
+  "keywords": [
+    "rest",
+    "api",
+    "errorhandling",
+    "messages",
+    "transaction"
+  ],
+  "author": "Eduardo Munoz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cgustav/MHandler"
+  },
+  "homepage": "https://github.com/cgustav/MHandler#readme"
+}
