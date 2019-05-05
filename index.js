@@ -167,12 +167,6 @@ class MHandler {
     }
     message = message.join('') + '.'
 
-    // return {
-    //   status: 'error',
-    //   code: this.getErrorCode(_n),
-    //   name: _n,
-    //   message
-    // }
     return this.handlerFactory(_n, message)
   }
 
@@ -189,12 +183,6 @@ class MHandler {
     }
     message = message.join('')
 
-    // return {
-    //   status: 'error',
-    //   code: this.getErrorCode(_n),
-    //   name: _n,
-    //   message
-    // }
     return this.handlerFactory(_n, message)
   }
 
@@ -210,45 +198,21 @@ class MHandler {
     }
     message = message.join('')
 
-    // return {
-    //   status: 'error',
-    //   code: this.getErrorCode(_n),
-    //   name: _n,
-    //   message
-    // }
     return this.handlerFactory(_n, message)
   }
 
   InternalError() {
     const _n = 'InternalServerError'
-    // return {
-    //   status: 'error',
-    //   code: this.getErrorCode(_n),
-    //   name: _n,
-    //   message: this.getErrorMessage(_n)
-    // }
     return this.handlerFactory(_n)
   }
 
   UnexpectedError() {
     const _n = 'UnexpectedError'
-    // return {
-    //   status: 'error',
-    //   code: this.getErrorCode(_n),
-    //   name: _n,
-    //   message: this.getErrorMessage(_n)
-    // }
     return this.handlerFactory(_n)
   }
 
   UnavailableService() {
     const _n = 'UnavailableService'
-    // return {
-    //   status: 'error',
-    //   code: this.getErrorCode(_n),
-    //   name: _n,
-    //   message: this.getErrorMessage(_n)
-    // }
     return this.handlerFactory(_n)
   }
 
