@@ -10,7 +10,7 @@ You need to specify default language for error messages directly in the class in
 cons mh = require('mhandler')
 
 //Instatiation
-Mhandler =  new mh('en') 
+Mhandler =  new mh('en')
 
 ```
 
@@ -23,7 +23,7 @@ Currently the available langages are English ('en') and Spanish ('es')
 try{
 //...
 }catch (e){
- return res.send(500, Mhandler.InternalError()) 
+ return res.send(500, Mhandler.InternalError())
 }
 
 /* will return
@@ -44,7 +44,7 @@ Or if you want to expose related empty fields in some controller.
 try{
   //...
 }catch (e){
-  return res.send(500, Mhandler.EmptyFields('firstName', 'lastName')) 
+  return res.send(500, Mhandler.EmptyFields('firstName', 'lastName'))
 }
 
 /* will return
@@ -78,7 +78,7 @@ Mhandler =  new mh('en',{code: false})
 */
 
 //Or setting props wherever you want
-Mhandler =  new mh('en') 
+Mhandler =  new mh('en')
 
 Mhandler.setMod({name:false, message: false})
 
