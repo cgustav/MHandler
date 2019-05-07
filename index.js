@@ -43,64 +43,11 @@ class MHandler {
   =                 DICTIONARIES                =
   =============================================*/
   getMessageDictionary() {
-    const lan = this.getLanguage()
-
-    return {
-      RequiredEmptyField: (function() {
-        if (lan === 'en')
-          return 'Should complete the following field(s): $[]'
-        if (lan === 'es')
-          return 'Se debe enviar el(los) campo(s): $[]'
-      })(),
-      ValidationError: (function() {
-        if (lan === 'en')
-          return `Data type not valid for $[] field(s).`
-        if (lan === 'es')
-          return `Los campos $[] no cumple(n) con las condiciones de validación.`
-      })(),
-      WrongDataType: (function() {
-        if (lan === 'en')
-          return `Data type not valid for $[] field(s).`
-        if (lan === 'es')
-          return `Formato(s) para campo(s) $[] no válido(s).`
-      })(),
-      // DuplicatedIdentifier: function() {},
-      // DuplicatedObject: function() {
-      //
-      // },
-      //Server Err
-      InternalServerError: (function() {
-        if (lan === 'en')
-          return `Internal server error.`
-        if (lan === 'es')
-          return `Error de servidor.`
-      })(),
-      UnexpectedError: (function() {
-        if (lan === 'en')
-          return `Unexpected error.`
-        if (lan === 'es')
-          return `Error Inesperado.`
-      })(),
-      UnavailableService: (function() {
-        if (lan === 'en')
-          return `The method to the specified resource is currently unavailable.`
-        if (lan === 'es')
-          return `Esta funcionalidad no está disponible por el momento.`
-      })(),
-    }
+    return require('./dictionaries/messages')(this._lang)
   }
 
   getErrorCodeDictionary() {
-    return {
-      RequiredEmptyField: 'E01',
-      ValidationError: 'E02',
-      WrongDataType: 'E03',
-      DuplicatedIdentifier: 'E04',
-      DuplicatedObject: 'E05',
-      InternalServerError: 'E06',
-      UnexpectedError: 'E07',
-      UnavailableService: 'E08'
-    }
+    return require('./dictionaries/codes')()
 
   }
 
@@ -122,7 +69,7 @@ class MHandler {
   =                   FACTORY                   =
   =============================================*/
 
-  handlerFactory(errorName, message) {
+  objectFactory(errorName, message) {
     //TODO agregar opciones para mods
     const template = this.getTemplate()
     /*
@@ -149,6 +96,31 @@ class MHandler {
   }
 
 
+  messageFactory(container) {
+    let {
+      args,
+      errorName
+    } = container
+
+    if (!args && !errorName)
+      return null
+
+    let message
+    if (errorName)
+      message = this.getErrorMessage(errorName).split('$[]')
+
+    for (let i = 0; i < args.length; i++) {
+      if (i != args.length - 1)
+        args[i] = args[i] + ', '
+
+      message[0] = message[0].concat(args[i])
+    }
+
+    return message.join('')
+
+  }
+
+
   /*=============================================
   =              FUNCTION TEMPLATES             =
   =============================================*/
@@ -167,60 +139,119 @@ class MHandler {
     }
     message = message.join('') + '.'
 
-    return this.handlerFactory(_n, message)
+    return this.objectFactory(_n, message)
   }
 
-  //
   ValidationError(...args) {
     const _n = 'ValidationError'
-    let message = this.getErrorMessage(_n).split('$[]')
 
-    for (let i = 0; i < args.length; i++) {
-      if (i != args.length - 1)
-        args[i] = args[i] + ', '
+    let message = this.messageFactory({
+      args,
+      errorName: _n
+    })
 
-      message[0] = message[0].concat(args[i])
-    }
-    message = message.join('')
+    //deprecated v 0.0.1
+    // let message = this.getErrorMessage(_n).split('$[]')
+    // for (let i = 0; i < args.length; i++) {
+    //   if (i != args.length - 1)
+    //     args[i] = args[i] + ', '
+    //
+    //   message[0] = message[0].concat(args[i])
+    // }
+    // message = message.join('')
 
-    return this.handlerFactory(_n, message)
+    return this.objectFactory(_n, message)
   }
 
   WrongDataType(...args) {
     const _n = 'WrongDataType'
-    let message = this.getErrorMessage(_n).split('$[]')
 
-    for (let i = 0; i < args.length; i++) {
-      if (i != args.length - 1)
-        args[i] = args[i] + ', '
+    let message = this.messageFactory({
+      args,
+      errorName: _n
+    })
 
-      message[0] = message[0].concat(args[i])
-    }
-    message = message.join('')
+    //deprecated v 0.0.1
+    // let message = this.getErrorMessage(_n).split('$[]')
+    // for (let i = 0; i < args.length; i++) {
+    //   if (i != args.length - 1)
+    //     args[i] = args[i] + ', '
+    //
+    //   message[0] = message[0].concat(args[i])
+    // }
+    // message = message.join('')
 
-    return this.handlerFactory(_n, message)
+    return this.objectFactory(_n, message)
+  }
+
+  DuplicatedValue(...args) {
+    const _n = 'DuplicatedValue'
+
+    let message = this.messageFactory({
+      args,
+      errorName: _n
+    })
+
+    //deprecated v 0.0.1
+    //let message = this.getErrorMessage(_n).split('$[]')
+    // for (let i = 0; i < args.length; i++) {
+    //   if (i != args.length - 1)
+    //     args[i] = args[i] + ', '
+    //
+    //   message[0] = message[0].concat(args[i])
+    // }
+    // message = message.join('')
+
+    return this.objectFactory(_n, message)
+  }
+
+  DuplicatedField(...args) {
+    const _n = 'DuplicatedField'
+
+
+    let message = this.messageFactory({
+      args,
+      errorName: _n
+    })
+
+    //deprecated v 0.0.1
+    //let message = this.getErrorMessage(_n).split('$[]')
+    // for (let i = 0; i < args.length; i++) {
+    //   if (i != args.length - 1)
+    //     args[i] = args[i] + ', '
+    //
+    //   message[0] = message[0].concat(args[i])
+    // }
+    // message = message.join('')
+
+    return this.objectFactory(_n, message)
+  }
+
+  EmptyParameters() {
+    const _n = 'EmptyParameters'
+    return this.objectFactory(_n)
   }
 
   InternalError() {
     const _n = 'InternalServerError'
-    return this.handlerFactory(_n)
+    return this.objectFactory(_n)
   }
 
   UnexpectedError() {
     const _n = 'UnexpectedError'
-    return this.handlerFactory(_n)
+    return this.objectFactory(_n)
   }
 
   UnavailableService() {
     const _n = 'UnavailableService'
-    return this.handlerFactory(_n)
+    return this.objectFactory(_n)
   }
 
   /*=============================================
   =              CUSTOM MESSAGES                =
   =============================================*/
 
-  custom(code, name, message) {
+  Custom(code, name, message) {
     const template = this.getTemplate
     if (!code)
       delete template[code]
