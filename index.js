@@ -103,12 +103,35 @@ class MHandler {
           template[mods[key]] = template[key]
           delete template[key]
         }
-
-
       }
     }
 
     return template
+  }
+
+
+  messageFactory(container) {
+    let {
+      args,
+      errorName
+    } = container
+
+    if (!args && !errorName)
+      return null
+
+    let message
+    if (errorName)
+      message = this.getErrorMessage(errorName).split('$[]')
+
+    for (let i = 0; i < args.length; i++) {
+      if (i != args.length - 1)
+        args[i] = args[i] + ', '
+
+      message[0] = message[0].concat(args[i])
+    }
+
+    return message.join('')
+
   }
 
   /*=============================================
@@ -136,32 +159,48 @@ class MHandler {
 
   ValidationError(...args) {
     const _n = 'ValidationError'
-    let message = this.getErrorMessage(_n).split('$[]')
 
-    for (let i = 0; i < args.length; i++) {
-      if (i != args.length - 1)
-        args[i] = args[i] + ', '
-
-      message[0] = message[0].concat(args[i])
-    }
-    message = message.join('')
+    let message = this.messageFactory({
+      args,
+      errorName: _n
+    })
 
     return this.handlerFactory(_n, message)
   }
 
   WrongDataType(...args) {
     const _n = 'WrongDataType'
-    let message = this.getErrorMessage(_n).split('$[]')
-
-    for (let i = 0; i < args.length; i++) {
-      if (i != args.length - 1)
-        args[i] = args[i] + ', '
-
-      message[0] = message[0].concat(args[i])
-    }
-    message = message.join('')
+    let message = this.messageFactory({
+      args,
+      errorName: _n
+    })
 
     return this.handlerFactory(_n, message)
+  }
+
+  DuplicatedField(...args) {
+    const _n = 'DuplicatedField'
+    let message = this.messageFactory({
+      args,
+      errorName: _n
+    })
+
+    return this.handlerFactory(_n, message)
+  }
+
+  DuplicatedValue(...args) {
+    const _n = 'DuplicatedValue'
+    let message = this.messageFactory({
+      args,
+      errorName: _n
+    })
+
+    return this.handlerFactory(_n, message)
+  }
+
+  EmptyParameters() {
+    const _n = 'EmptyParameters'
+    return this.handlerFactory(_n)
   }
 
   InternalError() {
