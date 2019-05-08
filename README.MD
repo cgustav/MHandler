@@ -1,4 +1,5 @@
-# MHandler
+# Miller handler v0.3.1
+
 REST API Error Messages Generator - Module to automate and standardize error messages on rest API based services.
 
 ### Implementation
@@ -7,10 +8,13 @@ You need to specify default language for error messages directly in the class in
 
 ```javascript
 //Import
-cons mh = require('mhandler')
+const mhandler = require('mhandler')
 
 //Instatiation
-Mhandler =  new mh('en')
+const Mhandler =  new mhandler()
+
+//Or change default langage to Spanish
+const Mhandler =  new mhandler('es')
 
 ```
 
@@ -23,6 +27,7 @@ Currently the available langages are English ('en') and Spanish ('es')
 try{
 //...
 }catch (e){
+ //...
  return res.send(500, Mhandler.InternalError())
 }
 
@@ -44,6 +49,7 @@ Or if you want to expose related empty fields in some controller.
 try{
   //...
 }catch (e){
+  //...
   return res.send(500, Mhandler.EmptyFields('firstName', 'lastName'))
 }
 
@@ -59,15 +65,16 @@ try{
 ```
 
 
-### Options
+### Customization Options
 
 Enable or disable default message structure vía object literals, like the following:
 
+#### Case 1: Omit keys
 ```javascript
-cons mh = require('mhandler')
+const mhandler = require('mhandler')
 
 //On class instantiation
-Mhandler =  new mh('en',{code: false})
+const Mhandler =  new mhandler('en',{code: false})
 
 /* will return
   {
@@ -78,7 +85,7 @@ Mhandler =  new mh('en',{code: false})
 */
 
 //Or setting props wherever you want
-Mhandler =  new mh('en')
+const Mhandler =  new mhandler('en')
 
 Mhandler.setMod({name:false, message: false})
 
@@ -89,5 +96,38 @@ Mhandler.setMod({name:false, message: false})
   }
 */
 
+```
+
+#### Case 2: Modifying keys
+
+Just remember, the below modifiers examples only will works fine with default object template:
+
+```javascript
+const Mhandler =  new mhandler('en',{
+    code: 'errorCode',
+    message: 'detail'
+  })
+
+/* will return
+  {
+   status: 'error',
+   errorCode: 'E005',
+   name: 'InternalError',
+   detail: 'Something went wrong.'
+  }
+*/
+
+//Or
+const Mhandler = new mhandler()
+
+Mhandler.setMod({name:false, status: 'type'})
+
+/* will return
+  {
+   type: 'error',
+   code: 'E056',
+   message: 'Some error'
+  }
+*/
 
 ```
