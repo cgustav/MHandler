@@ -98,7 +98,7 @@ Mhandler.setMod({name:false, message: false})
 
 ```
 
-#### Case 2: Modifying keys
+#### Case 2: Modify keys
 
 Just remember, the below modifiers examples only will works fine with default object template:
 
@@ -131,3 +131,27 @@ Mhandler.setMod({name:false, status: 'type'})
 */
 
 ```
+
+### Available Errors
+
+
+```javascript
+//Supports arguments
+EmptyFields(...)
+ValidationError(...)
+WrongDataType(...)
+DuplicatedField(...)
+DuplicatedValue(...)
+
+//
+EmptyParameters()
+InternalError()
+UnexpectedError()
+UnavailableService()
+```
+
+### Other 
+
+[Official npm package](https://www.npmjs.com/package/miller-handler)
+
+
