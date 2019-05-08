@@ -1,6 +1,6 @@
 {
   "name": "miller-handler",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "REST API Error Messages Generator - Módulo para generación de mensajes de error .",
   "main": "index.js",
   "scripts": {
