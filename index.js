@@ -1,8 +1,14 @@
 class MHandler {
 
   constructor(lang, mods) {
-    this._lang = lang.toLowerCase()
+    this._lang = (function(lang) {
+      if (!lang)
+        return 'en'
+      else
+        return lang.toLowerCase()
+    })(lang)
     this._mods = mods
+    this._dictionary = require('./dictionaries/main')
     this._template = {
       status: 'error',
       code: '',
@@ -27,6 +33,10 @@ class MHandler {
     return this._template
   }
 
+  getDictionary() {
+    return this._dictionary
+  }
+
   setLanguage(lang) {
     this._lang = lang
   }
@@ -39,87 +49,67 @@ class MHandler {
     this._template = template
   }
 
-  /*=============================================
-  =                 DICTIONARIES                =
-  =============================================*/
-  getMessageDictionary() {
-    return require('./dictionaries/messages')(this._lang)
+  setDictionary(dictionary) {
+    this._dictionary = dictionary
   }
 
-  getErrorCodeDictionary() {
-    return require('./dictionaries/codes')()
-
-  }
 
   /*=============================================
   =              DICTIONARY GETTERS             =
   =============================================*/
 
   getErrorMessage(errorName) {
-    let errorDictionay = this.getMessageDictionary()
-    return errorDictionay[errorName]
+    const container = this._dictionary[errorName]
+    const lang = this.getLanguage()
+    let template = this.getTemplate()
+
+    for (const key in container) {
+      if (key === 'message')
+        return container[key][lang]
+    }
   }
 
   getErrorCode(errorName) {
-    let errorDictionay = this.getErrorCodeDictionary()
-    return errorDictionay[errorName]
+    return this._dictionary[errorName]['code']
   }
 
+
   /*=============================================
-  =                   FACTORY                   =
+  =                  FACTORY                    =
   =============================================*/
 
-  objectFactory(errorName, message) {
-    //TODO agregar opciones para mods
-    const template = this.getTemplate()
-    /*
-    {error:false, code:false }
-    */
-    if (this._mods) {
-      for (var key in this._mods) {
-        if (!this._mods[key])
+  handlerFactory(errorName, message) {
+    const container = this._dictionary[errorName]
+    const lang = this.getLanguage()
+    const mods = this.getMods()
+    let template = this.getTemplate()
+
+    for (const key in template) {
+      if (key === 'message' && !message)
+        template[key] = container[key][lang]
+      else if (key === 'message' && message)
+        template[key] = message
+      else if (container[key] != undefined)
+        template[key] = container[key]
+    }
+
+    /*Mods*/
+
+    if (mods) {
+      for (let key in mods) {
+        if (!mods[key]) {
           delete template[key]
+        } else {
+          template[mods[key]] = template[key]
+          delete template[key]
+        }
+
+
       }
     }
 
-    for (const key in template) {
-      if (key === 'code')
-        template.code = this.getErrorCode(errorName)
-      if (key === 'name')
-        template.name = errorName
-      if (key === 'message' && !message)
-        template.message = this.getErrorMessage(errorName)
-      else if (key === 'message' && message)
-        template.message = message
-    }
     return template
   }
-
-
-  messageFactory(container) {
-    let {
-      args,
-      errorName
-    } = container
-
-    if (!args && !errorName)
-      return null
-
-    let message
-    if (errorName)
-      message = this.getErrorMessage(errorName).split('$[]')
-
-    for (let i = 0; i < args.length; i++) {
-      if (i != args.length - 1)
-        args[i] = args[i] + ', '
-
-      message[0] = message[0].concat(args[i])
-    }
-
-    return message.join('')
-
-  }
-
 
   /*=============================================
   =              FUNCTION TEMPLATES             =
@@ -129,6 +119,7 @@ class MHandler {
     const _n = 'RequiredEmptyField'
     let message = this.getErrorMessage(_n).split('$[]')
 
+    console.log(message)
     for (let i = 0; i < args.length; i++) {
       if (i === args.length - 1)
         args[i] = args[i] + ' '
@@ -139,112 +130,53 @@ class MHandler {
     }
     message = message.join('') + '.'
 
-    return this.objectFactory(_n, message)
+    return this.handlerFactory(_n, message)
   }
+
 
   ValidationError(...args) {
     const _n = 'ValidationError'
+    let message = this.getErrorMessage(_n).split('$[]')
 
-    let message = this.messageFactory({
-      args,
-      errorName: _n
-    })
+    for (let i = 0; i < args.length; i++) {
+      if (i != args.length - 1)
+        args[i] = args[i] + ', '
 
-    //deprecated v 0.0.1
-    // let message = this.getErrorMessage(_n).split('$[]')
-    // for (let i = 0; i < args.length; i++) {
-    //   if (i != args.length - 1)
-    //     args[i] = args[i] + ', '
-    //
-    //   message[0] = message[0].concat(args[i])
-    // }
-    // message = message.join('')
+      message[0] = message[0].concat(args[i])
+    }
+    message = message.join('')
 
-    return this.objectFactory(_n, message)
+    return this.handlerFactory(_n, message)
   }
 
   WrongDataType(...args) {
     const _n = 'WrongDataType'
+    let message = this.getErrorMessage(_n).split('$[]')
 
-    let message = this.messageFactory({
-      args,
-      errorName: _n
-    })
+    for (let i = 0; i < args.length; i++) {
+      if (i != args.length - 1)
+        args[i] = args[i] + ', '
 
-    //deprecated v 0.0.1
-    // let message = this.getErrorMessage(_n).split('$[]')
-    // for (let i = 0; i < args.length; i++) {
-    //   if (i != args.length - 1)
-    //     args[i] = args[i] + ', '
-    //
-    //   message[0] = message[0].concat(args[i])
-    // }
-    // message = message.join('')
+      message[0] = message[0].concat(args[i])
+    }
+    message = message.join('')
 
-    return this.objectFactory(_n, message)
-  }
-
-  DuplicatedValue(...args) {
-    const _n = 'DuplicatedValue'
-
-    let message = this.messageFactory({
-      args,
-      errorName: _n
-    })
-
-    //deprecated v 0.0.1
-    //let message = this.getErrorMessage(_n).split('$[]')
-    // for (let i = 0; i < args.length; i++) {
-    //   if (i != args.length - 1)
-    //     args[i] = args[i] + ', '
-    //
-    //   message[0] = message[0].concat(args[i])
-    // }
-    // message = message.join('')
-
-    return this.objectFactory(_n, message)
-  }
-
-  DuplicatedField(...args) {
-    const _n = 'DuplicatedField'
-
-
-    let message = this.messageFactory({
-      args,
-      errorName: _n
-    })
-
-    //deprecated v 0.0.1
-    //let message = this.getErrorMessage(_n).split('$[]')
-    // for (let i = 0; i < args.length; i++) {
-    //   if (i != args.length - 1)
-    //     args[i] = args[i] + ', '
-    //
-    //   message[0] = message[0].concat(args[i])
-    // }
-    // message = message.join('')
-
-    return this.objectFactory(_n, message)
-  }
-
-  EmptyParameters() {
-    const _n = 'EmptyParameters'
-    return this.objectFactory(_n)
+    return this.handlerFactory(_n, message)
   }
 
   InternalError() {
     const _n = 'InternalServerError'
-    return this.objectFactory(_n)
+    return this.handlerFactory(_n)
   }
 
   UnexpectedError() {
     const _n = 'UnexpectedError'
-    return this.objectFactory(_n)
+    return this.handlerFactory(_n)
   }
 
   UnavailableService() {
     const _n = 'UnavailableService'
-    return this.objectFactory(_n)
+    return this.handlerFactory(_n)
   }
 
   /*=============================================
@@ -252,7 +184,7 @@ class MHandler {
   =============================================*/
 
   Custom(code, name, message) {
-    const template = this.getTemplate
+    const template = this.getTemplate()
     if (!code)
       delete template[code]
     else
@@ -270,6 +202,7 @@ class MHandler {
 
     return template
   }
+
 }
 
 module.exports = MHandler

@@ -1,9 +1,10 @@
 {
   "name": "miller-handler",
-  "version": "0.1.1",
+  "version": "0.2.2",
   "description": "REST API Error Messages Generator - Módulo para generación de mensajes de error .",
   "main": "index.js",
   "scripts": {
+    "ntest": "nodemon test.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/cgustav/MHandler"
   },
-  "homepage": "https://github.com/cgustav/MHandler#readme"
+  "homepage": "https://github.com/cgustav/MHandler#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  }
 }
