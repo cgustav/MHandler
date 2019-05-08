@@ -136,6 +136,7 @@ Mhandler.setMod({name:false, status: 'type'})
 
 
 ```javascript
+
 //Supports arguments
 EmptyFields(...)
 ValidationError(...)
@@ -150,8 +151,6 @@ UnexpectedError()
 UnavailableService()
 ```
 
-### Other 
+### Other
 
 [Official npm package](https://www.npmjs.com/package/miller-handler)
-
-
