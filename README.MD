@@ -4,7 +4,7 @@ REST API Error Messages Generator - Module to automate and standardize error mes
 
 ### Implementation
 
-You need to specify default language for error messages directly in the class instantiation like this:
+You should specify the default language displayed en error messages directly on the class instantiation.
 
 ```javascript
 //Import
@@ -13,12 +13,13 @@ const mhandler = require('mhandler')
 //Instatiation
 const Mhandler =  new mhandler()
 
-//Or change default langage to Spanish
+//Changing default language to Spanish
 const Mhandler =  new mhandler('es')
 
 ```
 
-Currently the available langages are English ('en') and Spanish ('es')
+
+Note: Currently the only languages ​​available for error messages translation are English ('en') and Spanish ('es').
 
 
 ### Basic usage
@@ -42,7 +43,7 @@ try{
 
 ```
 
-Or if you want to expose related empty fields in some controller.
+For example, if you want to display which fields are empty inside a certain incoming request.
 
 ```javascript
 
@@ -67,9 +68,9 @@ try{
 
 ### Customization Options
 
-Enable or disable default message structure vía object literals, like the following:
+You can modify, enable and disable every key of the object message, just like the following examples:
 
-#### Case 1: Omit keys
+#### Case 1: Omit object message properties
 ```javascript
 const mhandler = require('mhandler')
 
@@ -84,7 +85,7 @@ const Mhandler =  new mhandler('en',{code: false})
   }
 */
 
-//Or setting props wherever you want
+//Or setting the object properties wherever you want
 const Mhandler =  new mhandler('en')
 
 Mhandler.setMod({name:false, message: false})
@@ -92,15 +93,15 @@ Mhandler.setMod({name:false, message: false})
 /* will return
   {
    status: 'error',
-   code: 'E056'
+   code: 'E006'
   }
 */
 
 ```
 
-#### Case 2: Modify keys
+#### Case 2: Modify object message properties
 
-Just remember, the below modifiers examples only will works fine with default object template:
+Note: the object message modifiers only works fine alongside the default object message template:
 
 ```javascript
 const Mhandler =  new mhandler('en',{
@@ -132,6 +133,26 @@ Mhandler.setMod({name:false, status: 'type'})
 
 ```
 
+
+### Case 3: Custom Errors
+
+```javascript
+const Mhandler =  new mhandler('en')
+
+MHandler.Custom('a085512', 'RandomError', 'Dang!')
+
+/* will return
+  {
+   status: 'error',
+   code: 'a085512',
+   name: 'RandomError',
+   message: 'Dang'
+  }
+*/
+
+```
+
+
 ### Available Errors
 
 
@@ -144,7 +165,7 @@ WrongDataType(...)
 DuplicatedField(...)
 DuplicatedValue(...)
 
-//
+//default messages
 EmptyParameters()
 InternalError()
 UnexpectedError()
