@@ -142,7 +142,7 @@ MHandler.Custom('a085512', 'RandomError', 'Dang!')
 */
 ```
 
-### Available Errors
+### Errores disponibles
 
 ```javascript
 //Admite argumentos
@@ -159,6 +159,6 @@ UnexpectedError()
 UnavailableService()
 ```
 
-### Other
+### Otro
 
-[Official npm package](https://www.npmjs.com/package/miller-handler)
+[Repositorio oficial de npm](https://www.npmjs.com/package/miller-handler)

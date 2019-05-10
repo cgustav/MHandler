@@ -1,7 +1,7 @@
 {
   "name": "miller-handler",
   "version": "0.3.2",
-  "description": "REST API Error Messages Generator - Módulo para generación de mensajes de error .",
+  "description": "REST API Error Messages Generator Node Module - Módulo para generación de mensajes de error .",
   "main": "index.js",
   "scripts": {
     "ntest": "nodemon test.js",
@@ -18,10 +18,16 @@
     "errors",
     "errorhandling",
     "messages",
-    "transaction"
+    "transaction",
+    "translation",
+    "english",
+    "spanish"
   ],
   "author": "Eduardo Munoz",
-  "license": "ISC",
+  "license": {
+    "type": "MIT",
+    "url": "https://opensource.org/licenses/MIT"
+  },
   "bugs": {
     "url": "https://github.com/cgustav/MHandler"
   },

@@ -11,6 +11,10 @@ ERROR MESSAGES INDEX
   InternalServerError: 'E007',
   UnexpectedError: 'E008',
   UnavailableService: 'E009'
+
+  //Proposal
+  DuplicatedObject
+  ObjectNotFound
 */
 
 
@@ -19,7 +23,7 @@ module.exports = {
     code: 'E001',
     name: 'EmptyParameters',
     message: {
-      en: 'Expected to receive parameters but none was found.',
+      en: 'Was expected to receive parameters but none has been found.',
       es: 'Se esperaba recibir parámetros pero ninguno ha sido encontrado.'
     }
   },
@@ -28,8 +32,8 @@ module.exports = {
     code: 'E002',
     name: 'RequiredEmptyField',
     message: {
-      en: 'Should complete the following field(s): $[]',
-      es: 'Debe completar el(los) campo(s): $[]'
+      en: 'The following parameters should be completed: $[]',
+      es: 'Deberían ser completados los siguientes parámetros: $[]'
     }
   },
 
@@ -37,8 +41,8 @@ module.exports = {
     code: 'E003',
     name: 'ValidationError',
     message: {
-      en: 'field(s) $[] does not meet the validation conditions.',
-      es: 'Los campos $[] no cumple(n) con las condiciones de validación.'
+      en: 'The following parameters ($[]) does not meet the validation conditions.',
+      es: 'Los siguientes parámetros ($[]) no cumplen con las condiciones de validación.'
     }
   },
 
@@ -46,8 +50,8 @@ module.exports = {
     code: 'E004',
     name: 'WrongDataType',
     message: {
-      en: 'Data type not valid for $[] field(s).',
-      es: 'Formato(s) para campo(s) $[] no válido(s).'
+      en: 'Data type is not valid for ($[]) parameters.',
+      es: 'El tipo de dato para los parámetros ($[]) no es válido.'
     }
   },
 
@@ -55,8 +59,8 @@ module.exports = {
     code: 'E005',
     name: 'DuplicatedField',
     message: {
-      en: 'Cannot process operation with duplicated $[] field(s).',
-      es: 'No se puede procesar la operación campo(s) $[] duplicado(s).'
+      en: 'Cannot process operation if fields $[] are duplicated.',
+      es: 'No se puede procesar la operación si los campos $[] están duplicados.'
     }
   },
 
@@ -64,8 +68,8 @@ module.exports = {
     code: 'E006',
     name: 'DuplicatedValue',
     message: {
-      en: 'The $[] value(s) already exists, please try again with a different value.',
-      es: 'El(los) valor(es) $[] ya existe(n), porfavor intente nuevamente con un valor diferente.'
+      en: `The '$[]' value(s) already exists, please try again with a different value.`,
+      es: `El (los) valor(es) '$[]' ya existe, por favor intente otra vez con un valor diferente.`
     }
   },
 

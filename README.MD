@@ -19,7 +19,7 @@ const Mhandler =  new mhandler('es')
 ```
 
 
-Note: Currently the only languages ​​available for error messages translation are English ('en') and Spanish ('es').
+**Note:** Currently the only languages ​​available for error messages translation are English ('en') and Spanish ('es').
 
 
 ### Basic usage
@@ -101,7 +101,7 @@ Mhandler.setMod({name:false, message: false})
 
 #### Case 2: Modify object message properties
 
-Note: the object message modifiers only works fine alongside the default object message template:
+**Note:** the object message modifiers only works fine alongside the default object message template:
 
 ```javascript
 const Mhandler =  new mhandler('en',{
