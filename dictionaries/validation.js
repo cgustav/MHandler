@@ -1,19 +1,17 @@
-
 /*
-    Validation E010 - E030
-
-          EmptyParameters: 'E011',
-          RequiredEmptyField: 'E012',
-          ValidationError: 'E013',
-          WrongDataType: 'E014',
-          DuplicatedField: 'E015',
-          DuplicatedValue: 'E016',
-          ExceedSize: 'E017',
+Validation E010 - E029
+-----------------------
+      EmptyParameters: 'E010',
+      RequiredEmptyField: 'E011',
+      ValidationError: 'E012',
+      WrongDataType: 'E013',
+      DuplicatedField: 'E014',
+      DuplicatedValue: 'E015',
 */
 
 module.exports = {
   EmptyParameters: {
-    code: 'E011',
+    code: 'E010',
     name: 'EmptyParameters',
     message: {
       en: 'Was expected to receive parameters but none has been found.',
@@ -22,7 +20,7 @@ module.exports = {
   },
 
   RequiredEmptyField: {
-    code: 'E012',
+    code: 'E011',
     name: 'RequiredEmptyField',
     message: {
       en: 'The following parameters should be completed: $[]',
@@ -31,7 +29,7 @@ module.exports = {
   },
 
   ValidationError: {
-    code: 'E013',
+    code: 'E012',
     name: 'ValidationError',
     message: {
       en: 'The following parameters ($[]) does not meet the validation conditions.',
@@ -40,7 +38,7 @@ module.exports = {
   },
 
   WrongDataType: {
-    code: 'E014',
+    code: 'E013',
     name: 'WrongDataType',
     message: {
       en: 'Data type is not valid for ($[]) parameters.',
@@ -49,7 +47,7 @@ module.exports = {
   },
 
   DuplicatedField: {
-    code: 'E015',
+    code: 'E014',
     name: 'DuplicatedField',
     message: {
       en: 'Cannot process operation if fields $[] are duplicated.',
@@ -58,7 +56,7 @@ module.exports = {
   },
 
   DuplicatedValue: {
-    code: 'E016',+
+    code: 'E015',
     name: 'DuplicatedValue',
     message: {
       en: `The '$[]' value(s) already exists, please try again with a different value.`,

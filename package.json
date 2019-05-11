@@ -15,13 +15,16 @@
     "rest",
     "api",
     "error",
+    "generator",
     "errors",
     "errorhandling",
     "messages",
     "transaction",
     "translation",
     "english",
-    "spanish"
+    "spanish",
+    "multilanguage",
+    "services",
   ],
   "author": "Eduardo Munoz",
   "license": {

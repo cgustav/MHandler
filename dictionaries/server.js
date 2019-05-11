@@ -1,11 +1,11 @@
 /*
-    Server E080 - E100
-
-          InternalServerError: 'E080'
-          UnexpectedError: 'E081'
-          UnavailableService: 'E082'
-          UnderMaintenance: 'E083'
-          FatalError: 'E084'
+Server E080 - E099
+------------------
+      InternalServerError: 'E080'
+      UnexpectedError: 'E081'
+      UnavailableService: 'E082'
+      UnderMaintenance: 'E083'
+      FatalError: 'E084'
 */
 
 module.exports = {

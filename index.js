@@ -8,7 +8,7 @@ class MHandler {
         return lang.toLowerCase()
     })(lang)
     this._mods = mods
-    this._dictionary = require('./dictionaries/main')
+    this._dictionary = require('./dictionaries/index')
     this._template = {
       status: 'error',
       code: '',
@@ -245,3 +245,9 @@ class MHandler {
 }
 
 module.exports = MHandler
+
+
+//TODO:
+//*Include stackTrace option
+//*Include time option ext
+//*Include hash option
