@@ -156,9 +156,10 @@ MHandler.Custom('a085512', 'RandomError', 'Dang!')
 ### Available Errors
 
 
-```javascript
 
-//Supports arguments
+
+[EmptyFields](dictionary_en.md)
+
 EmptyFields(...)
 ValidationError(...)
 WrongDataType(...)
@@ -170,7 +171,7 @@ EmptyParameters()
 InternalError()
 UnexpectedError()
 UnavailableService()
-```
+
 
 ### Other
 
