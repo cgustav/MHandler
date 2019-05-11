@@ -2,19 +2,52 @@
 
 ERROR MESSAGES INDEX
 
-  EmptyParameters: 'E001',
-  RequiredEmptyField: 'E002',
-  ValidationError: 'E003',
-  WrongDataType: 'E004',
-  DuplicatedField: 'E005',
-  DuplicatedValue: 'E006',
-  InternalServerError: 'E007',
-  UnexpectedError: 'E008',
-  UnavailableService: 'E009'
+  //TODO:
+  //*Include stackTrace option
+  //*Include time option ext
+  //*Include hash option
 
-  //Proposal
-  DuplicatedObject
-  ObjectNotFound
+
+  //Requests E000 - E010
+
+  //Validation E010 - E030
+    EmptyParameters: 'E011',
+    RequiredEmptyField: 'E012',
+    ValidationError: 'E013',
+    WrongDataType: 'E014',
+    DuplicatedField: 'E015',
+    DuplicatedValue: 'E016',
+    ExceedSize: 'E017',
+
+  //Resources E030 - E050
+
+    DuplicatedResource: 'E021'
+    ResourceNotFound: 'E022'
+    -
+    DuplicatedDocument: 'E023'
+    DocumentNotFound: 'E024'
+    -
+    DuplicatedObject: 'E025'
+    ObjectNotFound: 'E026'
+
+  //Authentication & Authorization E050 - E070
+    UserAlreadyExist 'E50'
+    BadCredentials 'E51'
+    DisabledAccount 'E52'
+    UserNotFound 'E53'
+
+    TokenExpired 'E54'
+    InvalidToken 'E55'
+    Unauthorized 'E56'
+    Forbidden 'E57'
+    Banned 'E58'
+
+  //Server E080 - E100
+    InternalServerError: 'E080'
+    UnexpectedError: 'E081'
+    UnavailableService: 'E082'
+    UnderMaintenance: 'E083'
+    FatalError: 'E084'
 */
 
 
