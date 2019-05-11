@@ -136,6 +136,7 @@ class MHandler {
 
   }
 
+  //Under development
   // functionFactory(...args) {
   //   for (var i = 0; i < args.length; i++) {
   //     let fn
@@ -164,6 +165,11 @@ class MHandler {
   /*=============================================
   =              FUNCTION TEMPLATES             =
   =============================================*/
+
+  /*
+    Validation - OK
+    ----------
+  */
 
   EmptyFields(...args) {
     const _n = 'RequiredEmptyField'
@@ -230,8 +236,68 @@ class MHandler {
     return this.handlerFactory(_n)
   }
 
+  /*
+    Resources - OK
+    ---------
+  */
 
-  // Server - OK
+  DuplicatedResource() {
+    return this.handlerFactory('DuplicatedResource')
+  }
+
+  ResourceNotFound() {
+    return this.handlerFactory('ResourceNotFound')
+  }
+
+  /*
+    Authentication & Authorization - OK
+    ------------------------------
+  */
+
+  UserAlreadyExist() {
+    return this.handlerFactory('UserAlreadyExist')
+  }
+
+  BadCredentials() {
+    return this.handlerFactory('BadCredentials')
+  }
+
+  DisabledAccount() {
+    return this.handlerFactory('DisabledAccount')
+  }
+
+  TokenRequired() {
+    return this.handlerFactory('TokenRequired')
+  }
+
+  TokenExpired() {
+    return this.handlerFactory('TokenExpired')
+  }
+
+  InvalidToken() {
+    return this.handlerFactory('InvalidToken')
+  }
+
+  SessionExpired() {
+    return this.handlerFactory('SessionExpired')
+  }
+
+  SessionError() {
+    return this.handlerFactory('SessionError')
+  }
+
+  Unauthorized() {
+    return this.handlerFactory('Unauthorized')
+  }
+
+  Forbidden() {
+    return this.handlerFactory('Forbidden')
+  }
+
+  /*
+    Server - OK
+    ------
+  */
 
   InternalError() {
     return this.handlerFactory('InternalServerError')
@@ -245,11 +311,11 @@ class MHandler {
     return this.handlerFactory('UnavailableService')
   }
 
-  UnderMaintenance(){
+  UnderMaintenance() {
     return this.handlerFactory('UnderMaintenance')
   }
 
-  FatalError(){
+  FatalError() {
     return this.handlerFactory('FatalError')
   }
 
