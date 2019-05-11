@@ -15,11 +15,13 @@ class MHandler {
       name: '',
       message: ''
     }
+
   }
 
   /*=============================================
   =               GETTER & SETTERS              =
   =============================================*/
+
 
   getLanguage() {
     return this._lang
@@ -80,9 +82,9 @@ class MHandler {
 
   handlerFactory(errorName, message) {
     const container = this._dictionary[errorName]
-    const lang = this.getLanguage()
-    const mods = this.getMods()
-    let template = this.getTemplate()
+    const lang = this._lang
+    const mods = this._mods
+    let template = this._template
 
     for (const key in template) {
       if (key === 'message' && !message)
@@ -133,6 +135,31 @@ class MHandler {
     return message.join('')
 
   }
+
+  // functionFactory(...args) {
+  //   for (var i = 0; i < args.length; i++) {
+  //     let fn
+  //     let msg = args[i]['message'][this._lang].split('$[]')
+  //     let name = args[i]['name']
+  //
+  //     if (msg.length < 2) {
+  //       console.log('es una sola cadena de texto.')
+  //       fn = function() {
+  //         return this.handlerFactory(name)
+  //       }
+  //     } else {
+  //       fn = function(...args) {
+  //         let message = this.messageFactory({
+  //           args,
+  //           errorName: name
+  //         })
+  //         return this.handlerFactory(name, message)
+  //       }
+  //     }
+  //
+  //     MHandler.prototype[args[i]['name']] = fn
+  //   }
+  // }
 
   /*=============================================
   =              FUNCTION TEMPLATES             =
@@ -203,19 +230,27 @@ class MHandler {
     return this.handlerFactory(_n)
   }
 
+
+  // Server - OK
+
   InternalError() {
-    const _n = 'InternalServerError'
-    return this.handlerFactory(_n)
+    return this.handlerFactory('InternalServerError')
   }
 
   UnexpectedError() {
-    const _n = 'UnexpectedError'
-    return this.handlerFactory(_n)
+    return this.handlerFactory('UnexpectedError')
   }
 
   UnavailableService() {
-    const _n = 'UnavailableService'
-    return this.handlerFactory(_n)
+    return this.handlerFactory('UnavailableService')
+  }
+
+  UnderMaintenance(){
+    return this.handlerFactory('UnderMaintenance')
+  }
+
+  FatalError(){
+    return this.handlerFactory('FatalError')
   }
 
   /*=============================================
@@ -223,19 +258,17 @@ class MHandler {
   =============================================*/
 
   Custom(code, name, message) {
-    const template = this.getTemplate()
-    if (!code)
-      delete template[code]
+    let template = this._template
+
+    if (!code) delete template[code]
     else
       template.code = code
 
-    if (!name)
-      delete template[name]
+    if (!name) delete template[name]
     else
       template.name = name
 
-    if (!message)
-      delete template[message]
+    if (!message) delete template[message]
     else
       template.message = message
 

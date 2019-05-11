@@ -23,8 +23,8 @@ module.exports = {
     code: 'E081',
     name: 'UnexpectedError',
     message: {
-      en: 'Unexpected error.',
-      es: 'Error Inesperado.'
+      en: 'An unexpected error has occurred.',
+      es: 'Ha ocurrido un error inesperado.'
     }
   },
 
