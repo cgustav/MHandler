@@ -142,22 +142,42 @@ MHandler.Custom('a085512', 'RandomError', 'Dang!')
 */
 ```
 
-### Errores disponibles
+### Errores Disponibles
 
-```javascript
-//Admite argumentos
-EmptyFields(...)
-ValidationError(...)
-WrongDataType(...)
-DuplicatedField(...)
-DuplicatedValue(...)
+#### Errors de Validación
 
-//Mensajes predeterminados
-EmptyParameters()
-InternalError()
-UnexpectedError()
-UnavailableService()
-```
+* [EmptyParameters()](dictionary_es.md#emptyparameters)
+* [EmptyFields(...args)](dictionary_es.md#emptyfields)
+* [ValidationError(...args)](dictionary_es.md#validationerror)
+* [WrongDataType(...args)](dictionary_es.md#wrongdatatype)
+* [DuplicatedField(...args)](dictionary_es.md#duplicatedfield)
+* [DuplicatedValue(...args)](dictionary_es.md#duplicatedvalue)
+
+#### Errores de Recurso
+
+* [DuplicatedResource()](dictionary_es.md#duplicatedresource)
+* [ResourceNotFound()](dictionary_es.md#resourcenotfound)
+
+#### Errores de Autenticación y Autorización
+
+* [UserAlreadyExist()](dictionary_es.md#useralreadyexist)
+* [BadCredentials()](dictionary_es.md#badcredentials)
+* [DisabledAccount()](dictionary_es.md#disabledaccount)
+* [TokenRequired()](dictionary_es.md#tokenrequired)
+* [TokenExpired()](dictionary_es.md#tokenexpired)
+* [InvalidToken()](dictionary_es.md#invalidtoken)
+* [SessionExpired()](dictionary_es.md#sessionexpired)
+* [SessionError()](dictionary_es.md#sessionerror)
+* [Unauthorized()](dictionary_es.md#unauthorized)
+* [Forbidden()](dictionary_es.md#forbidden)
+
+#### Errores de Servidor
+
+* [InternalError()](dictionary_es.md#internalerror)
+* [UnexpectedError()](dictionary_es.md#unexpectederror)
+* [UnavailableService()](dictionary_es.md#unavailableservice)
+* [UnderMaintenance()](dictionary_es.md#undermaintenance)
+* [FatalError()](dictionary_es.md#fatalerror)
 
 ### Otro
 
