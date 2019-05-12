@@ -1,4 +1,4 @@
-# Miller handler v0.3.1
+# miller-handler v0.6.1
 
 REST API Error Messages Generator - Module to automate and standardize error messages on rest API based services.
 
