@@ -144,7 +144,7 @@ MHandler.Custom('a085512', 'RandomError', 'Dang!')
 
 ### Errores Disponibles
 
-#### Errors de Validación
+#### Errores de Validación
 
 * [EmptyParameters()](dictionary_es.md#emptyparameters)
 * [EmptyFields(...args)](dictionary_es.md#emptyfields)
