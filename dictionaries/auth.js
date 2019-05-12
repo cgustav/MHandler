@@ -86,7 +86,7 @@ module.exports = {
     code: 'E057',
     name: 'SessionError',
     message: {
-      en: 'A session error has occurred, try authenticating your credentials again',
+      en: 'A session error has occurred, try authenticating your credentials again.',
       es: 'Ha ocurrido un error de sesión. Intente autenticando sus credenciales nuevamente.'
     }
   },
@@ -105,7 +105,7 @@ module.exports = {
     name: 'Forbidden',
     message: {
       en: 'The access to the requested resource is forbidden.',
-      es: 'El acceso al recurso solicitado está prohibido. '
+      es: 'El acceso al recurso solicitado está prohibido.'
     }
   }
 

@@ -344,9 +344,3 @@ class MHandler {
 }
 
 module.exports = MHandler
-
-
-//TODO:
-//*Include stackTrace option
-//*Include time option ext
-//*Include hash option

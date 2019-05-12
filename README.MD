@@ -155,16 +155,13 @@ MHandler.Custom('a085512', 'RandomError', 'Dang!')
 
 ### Available Errors
 
+####
 
-
-
-[EmptyFields](dictionary_en.md)
-
-EmptyFields(...)
-ValidationError(...)
-WrongDataType(...)
-DuplicatedField(...)
-DuplicatedValue(...)
+* [EmptyFields](dictionary_en.md##EmptyFields)
+* [ValidationError](dictionary_en.md)
+* [WrongDataType](dictionary_en.md)
+* [DuplicatedField](dictionary_en.md)
+* [DuplicatedValue](dictionary_en.md)
 
 //default messages
 EmptyParameters()

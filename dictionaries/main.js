@@ -1,17 +1,8 @@
-/*
-Validation E010 - E029
------------------------
-      EmptyParameters: 'E010',
-      RequiredEmptyField: 'E011',
-      ValidationError: 'E012',
-      WrongDataType: 'E013',
-      DuplicatedField: 'E014',
-      DuplicatedValue: 'E015',
-*/
+
 
 module.exports = {
   EmptyParameters: {
-    code: 'E010',
+    code: 'E001',
     name: 'EmptyParameters',
     message: {
       en: 'Was expected to receive parameters but none has been found.',
@@ -20,7 +11,7 @@ module.exports = {
   },
 
   RequiredEmptyField: {
-    code: 'E011',
+    code: 'E002',
     name: 'RequiredEmptyField',
     message: {
       en: 'The following parameters should be completed: $[]',
@@ -29,25 +20,25 @@ module.exports = {
   },
 
   ValidationError: {
-    code: 'E012',
+    code: 'E003',
     name: 'ValidationError',
     message: {
-      en: 'The following parameters $[] does not meet the validation conditions.',
-      es: 'Los siguientes parámetros $[] no cumplen con las condiciones de validación.'
+      en: 'The following parameters ($[]) does not meet the validation conditions.',
+      es: 'Los siguientes parámetros ($[]) no cumplen con las condiciones de validación.'
     }
   },
 
   WrongDataType: {
-    code: 'E013',
+    code: 'E004',
     name: 'WrongDataType',
     message: {
-      en: 'Data type is not valid for $[] parameters.',
-      es: 'El tipo de dato para los parámetros $[] no es válido.'
+      en: 'Data type is not valid for ($[]) parameters.',
+      es: 'El tipo de dato para los parámetros ($[]) no es válido.'
     }
   },
 
   DuplicatedField: {
-    code: 'E014',
+    code: 'E005',
     name: 'DuplicatedField',
     message: {
       en: 'Cannot process operation if fields $[] are duplicated.',
@@ -56,11 +47,38 @@ module.exports = {
   },
 
   DuplicatedValue: {
-    code: 'E015',
+    code: 'E006',
     name: 'DuplicatedValue',
     message: {
       en: `The '$[]' value(s) already exists, please try again with a different value.`,
       es: `El (los) valor(es) '$[]' ya existe, por favor intente otra vez con un valor diferente.`
     }
   },
+
+  InternalServerError: {
+    code: 'E007',
+    name: 'InternalServerError',
+    message: {
+      en: 'Internal server error.',
+      es: 'Error de servidor.'
+    }
+  },
+
+  UnexpectedError: {
+    code: 'E008',
+    name: 'UnexpectedError',
+    message: {
+      en: 'Unexpected error.',
+      es: 'Error Inesperado.'
+    }
+  },
+
+  UnavailableService: {
+    code: 'E009',
+    name: 'UnavailableService',
+    message: {
+      es: 'The method to the specified resource is currently unavailable.',
+      en: 'Esta funcionalidad no está disponible por el momento.'
+    }
+  }
 }
