@@ -1,6 +1,6 @@
 {
   "name": "miller-handler",
-  "version": "0.3.2",
+  "version": "0.6.1",
   "description": "REST API Error Messages Generator Node Module - Módulo para generación de mensajes de error .",
   "main": "index.js",
   "scripts": {
@@ -32,7 +32,7 @@
   ],
   "author": {
     "name": "Eduardo Munoz",
-    "email": "edomun@protonmail.com",
+    "email": "edomun@protonmail.com"
   },
   "license": {
     "type": "MIT",

@@ -146,7 +146,7 @@ MHandler.Custom('a085512', 'RandomError', 'Dang!')
    status: 'error',
    code: 'a085512',
    name: 'RandomError',
-   message: 'Dang'
+   message: 'Dang!'
   }
 */
 
@@ -155,19 +155,40 @@ MHandler.Custom('a085512', 'RandomError', 'Dang!')
 
 ### Available Errors
 
-####
+#### Validation Errors
 
-* [EmptyFields](dictionary_en.md##EmptyFields)
-* [ValidationError](dictionary_en.md)
-* [WrongDataType](dictionary_en.md)
-* [DuplicatedField](dictionary_en.md)
-* [DuplicatedValue](dictionary_en.md)
+* [EmptyParameters()](dictionary_en.md#emptyparameters)
+* [EmptyFields(...args)](dictionary_en.md#emptyfields)
+* [ValidationError(...args)](dictionary_en.md#validationerror)
+* [WrongDataType(...args)](dictionary_en.md#wrongdatatype)
+* [DuplicatedField(...args)](dictionary_en.md#duplicatedfield)
+* [DuplicatedValue(...args)](dictionary_en.md#duplicatedvalue)
 
-//default messages
-EmptyParameters()
-InternalError()
-UnexpectedError()
-UnavailableService()
+#### Resource Errors
+
+* [DuplicatedResource()](dictionary_en.md#duplicatedresource)
+* [ResourceNotFound()](dictionary_en.md#resourcenotfound)
+
+#### Authentication & Authorization Errors
+
+* [UserAlreadyExist()](dictionary_en.md#useralreadyexist)
+* [BadCredentials()](dictionary_en.md#badcredentials)
+* [DisabledAccount()](dictionary_en.md#disabledaccount)
+* [TokenRequired()](dictionary_en.md#tokenrequired)
+* [TokenExpired()](dictionary_en.md#tokenexpired)
+* [InvalidToken()](dictionary_en.md#invalidtoken)
+* [SessionExpired()](dictionary_en.md#sessionexpired)
+* [SessionError()](dictionary_en.md#sessionerror)
+* [Unauthorized()](dictionary_en.md#unauthorized)
+* [Forbidden()](dictionary_en.md#forbidden)
+
+#### Server Errors
+
+* [InternalError()](dictionary_en.md#internalerror)
+* [UnexpectedError()](dictionary_en.md#unexpectederror)
+* [UnavailableService()](dictionary_en.md#unavailableservice)
+* [UnderMaintenance()](dictionary_en.md#undermaintenance)
+* [FatalError()](dictionary_en.md#fatalerror)
 
 
 ### Other
