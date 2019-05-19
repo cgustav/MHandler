@@ -1,6 +1,6 @@
-# miller-handler v0.6.1
+# miller-handler v0.7.0
 
-REST API Error Messages Generator - Module to automate and standardize error messages on rest API based services.
+REST API Error Messages Generator - Module to automate and standardize error messages on REST API based services.
 
 ### Implementation
 
@@ -10,16 +10,15 @@ You should specify the default language displayed en error messages directly on 
 //Import
 const mhandler = require('mhandler')
 
-//Instatiation
+//Instantiation, english by default
 const Mhandler =  new mhandler()
 
-//Changing default language to Spanish
+//Instantiation with Spanish as default language
 const Mhandler =  new mhandler('es')
 
 ```
 
-
-**Note:** Currently the only languages ​​available for error messages translation are English ('en') and Spanish ('es').
+**Note:** Currently, the ​​available languages for displaying error messages are English ('en') and Spanish ('es').
 
 
 ### Basic usage
@@ -70,7 +69,25 @@ try{
 
 You can modify, enable and disable every key of the object message, just like the following examples:
 
-#### Case 1: Omit object message properties
+#### Case 1: Activating message timestamps
+```javascript
+const mhandler = require('mhandler')
+
+//On class instantiation
+const Mhandler =  new mhandler('en',{timestamp: true})
+
+/* will return
+  {
+   status: 'error',
+   name: 'InternalError',
+   message: 'Something went wrong.',
+   timestamp: 2019-05-19T07:55:46.643Z
+  }
+*/
+```
+
+
+#### Case 2: Omit object message properties
 ```javascript
 const mhandler = require('mhandler')
 
@@ -99,7 +116,7 @@ Mhandler.setMod({name:false, message: false})
 
 ```
 
-#### Case 2: Modify object message properties
+#### Case 3: Modifying the object message properties
 
 **Note:** the object message modifiers only works fine alongside the default object message template:
 
@@ -134,7 +151,7 @@ Mhandler.setMod({name:false, status: 'type'})
 ```
 
 
-### Case 3: Custom Errors
+### Case 4: Using Custom Errors
 
 ```javascript
 const Mhandler =  new mhandler('en')

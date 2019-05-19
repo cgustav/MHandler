@@ -10,10 +10,10 @@ Se debe especificar el lenguaje por defecto mostrado en los mensajes de error di
 //Import
 const mhandler = require('mhandler')
 
-//Instanciación
+//Instanciación, con lenguaje en inglés por defecto
 const Mhandler =  new mhandler()
 
-//Cambiando el idioma por defecto al español
+//Instanciación con el español como idioma por defecto
 const Mhandler =  new mhandler('es')
 ```
 
@@ -63,7 +63,24 @@ try{
 
 Puedes modificar, habilitar e inhabilitar cada una de las propiedades del objeto del mensaje, como en los siguientes ejemplos:
 
-#### Case 1: Omitir propiedades del mensaje
+#### Caso 1: Activando el timestamp en los mensajes
+```javascript
+const mhandler = require('mhandler')
+
+//On class instantiation
+const Mhandler =  new mhandler('en',{timestamp: true})
+
+/* will return
+  {
+   status: 'error',
+   name: 'InternalError',
+   message: 'Something went wrong.',
+   timestamp: 2019-05-19T07:55:46.643Z
+  }
+*/
+```
+
+#### Caso 2: Omitir propiedades del mensaje
 
 ```javascript
 const mhandler = require('mhandler')
@@ -92,7 +109,7 @@ Mhandler.setMod({name:false, message: false})
 */
 ```
 
-#### Caso 2: Modificar propiedades del mensaje
+#### Caso 3: Modificar propiedades del mensaje
 
 **Nota:** Las modificaciones al objeto de mensaje funcionarán bien solamente junto a la plantilla de objeto de mensaje por defecto.
 
@@ -125,7 +142,7 @@ Mhandler.setMod({name:false, status: 'type'})
 */
 ```
 
-### Caso 3: Errores personalizados
+### Caso 4: Errores personalizados
 
 ```javascript
 const Mhandler =  new mhandler('en')

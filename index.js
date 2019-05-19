@@ -1,6 +1,6 @@
 class MHandler {
 
-  constructor(lang, mods) {
+  constructor(lang, mods, dictionary) {
     this._lang = (function(lang) {
       if (!lang)
         return 'en'
@@ -8,7 +8,8 @@ class MHandler {
         return lang.toLowerCase()
     })(lang)
     this._mods = mods
-    this._dictionary = require('./dictionaries/index')
+    this._timestamp = new Date()
+    this._dictionary = dictionary || require('./dictionaries/index')
     this._template = {
       status: 'error',
       code: '',
@@ -19,7 +20,7 @@ class MHandler {
   }
 
   /*=============================================
-  =               GETTER & SETTERS              =
+  =                    GETTERS                  =
   =============================================*/
 
 
@@ -39,6 +40,14 @@ class MHandler {
     return this._dictionary
   }
 
+  getTimestamp() {
+    return this._timestamp
+  }
+
+  /*=============================================
+  =                    SETTERS                  =
+  =============================================*/
+
   setLanguage(lang) {
     this._lang = lang
   }
@@ -55,6 +64,9 @@ class MHandler {
     this._dictionary = dictionary
   }
 
+  setTimestamp(timestamp) {
+    this._timestamp = timestamp
+  }
 
   /*=============================================
   =              DICTIONARY GETTERS             =
@@ -84,6 +96,7 @@ class MHandler {
     const container = this._dictionary[errorName]
     const lang = this._lang
     const mods = this._mods
+    const timestamp = this._timestamp
     let template = this._template
 
     for (const key in template) {
@@ -97,17 +110,17 @@ class MHandler {
 
     /*Mods*/
 
-    if (mods) {
+    if (mods)
       for (let key in mods) {
-        if (!mods[key]) {
+        if (mods['timestamp'] === true) {
+          template.timestamp = timestamp
+        }else if (!mods[key]) {
           delete template[key]
-        } else {
+        } else if (mods[key]) {
           template[mods[key]] = template[key]
           delete template[key]
         }
       }
-    }
-
     return template
   }
 
@@ -175,7 +188,6 @@ class MHandler {
     const _n = 'RequiredEmptyField'
     let message = this.getErrorMessage(_n).split('$[]')
 
-    console.log(message)
     for (let i = 0; i < args.length; i++) {
       if (i === args.length - 1)
         args[i] = args[i] + ' '
@@ -327,16 +339,13 @@ class MHandler {
     let template = this._template
 
     if (!code) delete template[code]
-    else
-      template.code = code
+    else template.code = code
 
     if (!name) delete template[name]
-    else
-      template.name = name
+    else template.name = name
 
     if (!message) delete template[message]
-    else
-      template.message = message
+    else template.message = message
 
     return template
   }
